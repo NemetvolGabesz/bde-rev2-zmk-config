@@ -2,14 +2,14 @@
 
 ## Instructions
 
-1. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo) so you can edit it.
+1. You will need to [sign up for a GitHub account](https://github.com/signup), and [fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository) so you can edit it.
 2. Navigate to the **Actions** tab and click the "I understand my workflows, go ahead and run them" button to enable builds.
    ![Actions tab with "I understand my workflows" button](https://aws1.discourse-cdn.com/github/original/2X/8/8a28c79db26e3c2d82f2d0694ae0762b2ef7763b.png)
 3. Edit the [config/bde_rev2.conf](config/bde_rev2.conf) to enable/disable features. Edit [config/bde_rev2.keymap](config/bde_rev2.keymap) to change the keymap. Lastly, make sure the [build.yaml](build.yaml) file has your board in the "boards" list.
 4. After committing your changes, your firmware will begin compiling. Assuming there are no typos or other problems, it will eventually be [downloadable from the Actions tab](https://zmk.dev/docs/user-setup#installing-the-firmware).
 5. [Flash the firmware](https://zmk.dev/docs/user-setup#flashing-uf2-files) that matches the board you're using, e.g. `bde_rev2-nice_nano_v2-zmk.uf2` for a nice!nano v2.
 
-## Quick Questions
+## Common Questions/Problems
 
 ### There was an error and the build didn't finish.
 
@@ -37,15 +37,19 @@ And double-check the Kconfig file in the build results to make sure what you've 
 
 #### The OLED can be a bit finicky.
 - As of mid-July 2022, [there is a known issue with OLEDs not being re-initialized after power off](https://github.com/zmkfirmware/zmk/issues/674).
-- If using a nice!nano v2 without a battery, the RAW pin does not always deliver consistent voltage.
+- If using a nice!nano v2 without a battery, its RAW pin does not always deliver consistent voltage. This can result in the OLED turning off immediately after boot, or failing to turn on.
 
 Try the following:
 
 1. Wait at least one minute and press the physical reset button on the board once.
 
-### The flash worked, but I'm having inexplicable issues/can't get anything to pair.
+### After disconnecting the keyboard from Bluetooth, it won't reconnect.
 
-#### Try flashing the `settings_reset` firmware for your board.
+#### Forget the Bluetooth connection on both the BDE and the device, then try re-pairing.
+
+If you don't remember which profile on the BDE was used to connect to a specific device, this may mean cycling through each (`&bt BT_PRV`/`&bt BT_NXT`) and clearing them (`&bt BT_CLR`) one by one. [See ZMK's documentation for more info](https://zmk.dev/docs/behaviors/bluetooth#bluetooth-pairing-and-profiles).
+
+As a last resort, try flashing the `settings_reset` firmware for your board; this will force-clear everything.
 
 ## Further Troubleshooting Resources
 
