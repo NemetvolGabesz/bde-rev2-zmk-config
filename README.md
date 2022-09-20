@@ -36,8 +36,9 @@ There are many, many more differences. Don't forget to [check the ZMK docs](http
 And double-check the Kconfig file in the build results to make sure what you've enabled is really enabled. As of mid-July 2022, [there are also some issues regarding default board/shield configurations taking precedence over user configurations](https://github.com/zmkfirmware/zmk/issues/1382).
 
 #### The OLED can be a bit finicky.
-- As of mid-July 2022, [there is a known issue with OLEDs not being re-initialized after power off](https://github.com/zmkfirmware/zmk/issues/674).
-- If using a nice!nano v2 without a battery, its RAW pin does not always deliver consistent voltage. This can result in the OLED turning off immediately after boot, or failing to turn on.
+
+- [There is a known issue with OLEDs not being re-initialized after power off](https://github.com/zmkfirmware/zmk/issues/674); please check that pull request for any updates and/or possible workarounds.
+- If using a nice!nano v2 without a battery, its `RAW` pin does not always deliver consistent voltage. This can result in the OLED turning off immediately after boot, or failing to turn on. Unfortunately, the only guaranteed fix is to add a battery; occasionally it will work after a reset.
 
 Try the following:
 
