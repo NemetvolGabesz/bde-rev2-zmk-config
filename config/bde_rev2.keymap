@@ -9,7 +9,7 @@
 #define FN2 2
 #define FN3 3
 
-&encoder0 {
+&encoder {
     status = "okay";
 };
 

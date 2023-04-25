@@ -9,11 +9,11 @@
 / {
     chosen {
         zephyr,display = &oled;
-        zmk,kscan = &kscan0;
+        zmk,kscan = &kscan;
         zmk,matrix_transform = &default_transform;
     };
 
-    default_transform: keymap_transform_0 {
+    default_transform: keymap_transform {
         compatible = "zmk,matrix-transform";
         columns = <7>;
         rows = <6>;
@@ -24,9 +24,8 @@ RC(2,0)  RC(2,1)  RC(2,2)  RC(2,3)  RC(2,4)  RC(2,5)  RC(2,6)  RC(5,6)  RC(5,5) 
         >;
     };
 
-    kscan0: kscan_0 {
+    kscan: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
         diode-direction = "col2row";
 
         col-gpios
@@ -49,18 +48,18 @@ RC(2,0)  RC(2,1)  RC(2,2)  RC(2,3)  RC(2,4)  RC(2,5)  RC(2,6)  RC(5,6)  RC(5,5) 
             ;
     };
 
-encoder0: encoder_0 {
+    encoder: encoder {
         compatible = "alps,ec11";
-        label = "ENCODER";
+        label = "encoder";
         a-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         resolution = <4>;
         status = "disabled";
     };
 
-sensors {
+    sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&encoder0>;
+        sensors = <&encoder>;
     };
 
 };
@@ -71,7 +70,6 @@ sensors {
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
-        label = "DISPLAY";
         width = <128>;
         height = <32>;
         segment-offset = <0>;
